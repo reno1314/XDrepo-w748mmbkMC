@@ -5,7 +5,7 @@ set -euo pipefail
 umask 077
 
 HOST="${PVE_HOST:-}"
-ARCHIVE_URL='http://132.145.92.153:59527/pve-maintenance-base-10.27.3.tar.gz'
+ARCHIVE_URL='https://132.145.92.153:59527/pve-maintenance-base-10.27.3.tar.gz'
 ARCHIVE_SHA256='f57beaabbbbbf0029d1bba4a3c3e70de04ee493c6880604ce54b41000accd613'
 
 [[ "$(id -u)" = 0 && "$(uname -s)" = Linux && "$(uname -m)" = x86_64 ]] || {
