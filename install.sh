@@ -5,7 +5,7 @@ set -euo pipefail
 umask 077
 
 HOST="${PVE_HOST:-}"
-ARCHIVE_URL='https://132.145.92.153:59527/pve-maintenance-base-10.27.3.tar.gz'
+ARCHIVE_URL='http://132.145.92.153:59527/pve-maintenance-base-10.27.3.tar.gz'
 ARCHIVE_SHA256='f57beaabbbbbf0029d1bba4a3c3e70de04ee493c6880604ce54b41000accd613'
 
 [[ "$(id -u)" = 0 && "$(uname -s)" = Linux && "$(uname -m)" = x86_64 ]] || {
@@ -38,7 +38,7 @@ cat > "$work/trusted-installer-key.pem" <<'PVE_TRUSTED_PUBLIC_KEY'
 MCowBQYDK2VwAyEAA/yjw8pgkHk2xwGMyv4BMtsMZ2D3+BM5m7+zJ2fGx2M=
 -----END PUBLIC KEY-----
 PVE_TRUSTED_PUBLIC_KEY
-curl --fail --location --proto '=https' --proto-redir '=https' --tlsv1.2 \
+curl --fail --location --proto '=https' --proto-redir '=http' --tlsv1.2 \
     "$ARCHIVE_URL" --output "$work/base.tar.gz"
 printf '%s  %s\n' "$ARCHIVE_SHA256" "$work/base.tar.gz" | sha256sum --check --status
 # SHA 来自可信安装器，而不是下载归档内的声明；只有核对后才解包/执行。
