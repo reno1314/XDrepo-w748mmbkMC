@@ -38,7 +38,7 @@ cat > "$work/trusted-installer-key.pem" <<'PVE_TRUSTED_PUBLIC_KEY'
 MCowBQYDK2VwAyEAA/yjw8pgkHk2xwGMyv4BMtsMZ2D3+BM5m7+zJ2fGx2M=
 -----END PUBLIC KEY-----
 PVE_TRUSTED_PUBLIC_KEY
-curl --fail --location --proto '=http' --proto-redir '=http' --tlsv1.2 \
+curl --fail --location --proto '=http,https' --proto-redir '=http,https' --tlsv1.2 \
     "$ARCHIVE_URL" --output "$work/base.tar.gz"
 printf '%s  %s\n' "$ARCHIVE_SHA256" "$work/base.tar.gz" | sha256sum --check --status
 # SHA 来自可信安装器，而不是下载归档内的声明；只有核对后才解包/执行。
